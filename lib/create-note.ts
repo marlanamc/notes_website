@@ -24,6 +24,7 @@ export async function createNote(
     session_id: sessionId,
     category: "today",
     emoji: "👋🏼",
+    color: "#0000FF",
   };
 
   try {
