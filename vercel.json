@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/notes/about-me",
+      "permanent": true
+    }
+  ]
+}

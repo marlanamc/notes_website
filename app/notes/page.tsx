@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
+  console.log("Redirecting to the specific note...");
   redirect('/notes/new-note-19e86fe4-ee7d-4718-b956-d94325bdc2c6');
   return null; // This component won't be rendered because of the redirect
 }
