@@ -27,25 +27,30 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const supabase = createBrowserClient();
-  const { data: notes } = await supabase
-    .from("notes")
-    .select("*")
-    .eq("public", true);
+  
+  // Fetch notes and site config
+  const [{ data: notes }, { data: siteConfig }] = await Promise.all([
+    supabase.from("notes").select("*").eq("public", true),
+    supabase.from("site_config").select("*").single()
+  ]);
+
+  // Provide a fallback title if siteConfig is null
+  const title = siteConfig?.title || "My Notes";
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <title>{siteConfig.title}</title>
+        <title>{title}</title>
         <meta property="twitter:card" content="summary_large_image"></meta>
-        <meta property="twitter:title" content={siteConfig.title}></meta>
+        <meta property="twitter:title" content={title}></meta>
         <meta
           property="twitter:description"
-          content={siteConfig.title}
+          content={title}
         ></meta>
-        <meta property="og:site_name" content={siteConfig.title}></meta>
-        <meta property="og:description" content={siteConfig.title}></meta>
-        <meta property="og:title" content={siteConfig.title}></meta>
-        <meta property="og:url" content={siteConfig.url}></meta>
+        <meta property="og:site_name" content={title}></meta>
+        <meta property="og:description" content={title}></meta>
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:url" content={siteConfig?.url || ""}></meta>
       </head>
       <body
         className={cn("min-h-dvh font-sans antialiased", fontSans.variable)}

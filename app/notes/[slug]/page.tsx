@@ -15,9 +15,9 @@ export async function generateStaticParams() {
     .select("slug")
     .eq("public", true);
 
-  return posts!.map(({ slug }) => ({
+  return posts?.map(({ slug }) => ({
     slug,
-  }));
+  })) ?? [];
 }
 
 // Use dynamic rendering for non-public notes
@@ -39,7 +39,7 @@ export async function generateMetadata({
   const emoji = note?.emoji || "👋🏼";
 
   return {
-    title: `alana goyal | ${title}`,
+    title: `Marlana Creed | ${title}`,
     openGraph: {
       images: [
         `/notes/api/og/?title=${encodeURIComponent(title)}&emoji=${encodeURIComponent(

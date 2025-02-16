@@ -14,25 +14,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 20%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: 0 0% 10%;
+    --foreground: 0 0% 91%;
+    --card: 0 0% 17%;
+    --card-foreground: 0 0% 91%;
+    --popover: 0 0% 17%;
+    --popover-foreground: 0 0% 91%;
+    --primary: 220 25% 60%;
+    --primary-foreground: 217 100% 95%;
+    --secondary: 350 15% 66%;
+    --secondary-foreground: 0 100% 97%;
+    --muted: 0 2% 17%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 140 12% 56%;
+    --accent-foreground: 150 100% 93%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 240 5% 26%;
+    --input: 240 5% 26%;
+    --ring: 240 5% 65%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -87,7 +87,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background;
+    @apply text-white;
   }
 
   *:focus-visible {
@@ -98,5 +99,39 @@
 
 /* Global caret styling */
 * {
-  caret-color: #e2a727;
+  caret-color: #27e291;
+}
+
+.dark {
+  background-color: #1A1A1A;
+  color: #E8E8E8;
+}
+
+.dark .muted {
+  background-color: #2C2A2A;
+}
+
+.dark .primary {
+  background-color: #7B93B8;
+  color: #E8F0FF;
+}
+
+.dark .secondary {
+  background-color: #B89B96;
+  color: #FFF0ED;
+}
+
+.dark .accent {
+  background-color: #8BA893;
+  color: #E8F5EB;
+}
+
+.dark .card,
+.dark .popover {
+  background-color: #2C2C2C;
+  color: #E8E8E8;
+}
+
+.dark .border {
+  border-color: #3F3F46;
 }

@@ -1,8 +1,8 @@
-import type { Config } from "tailwindcss"
+import { type Config } from "tailwindcss"
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
-const config = {
-  darkMode: ["class"],
+export default {
+  darkMode: "class",
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -23,39 +23,34 @@ const config = {
         sans: ["-apple-system", "SF Pro", "SF Pro Display", "SF Pro Text", ...fontFamily.sans],
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#7B93B8",
+          foreground: "#E8F0FF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#B89B96",
+          foreground: "#FFF0ED",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#2C2A2A",
+          foreground: "#A1A1AA",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#8BA893",
+          foreground: "#E8F5EB",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+        background: {
+          DEFAULT: "#1A1A1A",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "#2C2C2C",
+          foreground: "#E8E8E8",
         },
+        popover: {
+          DEFAULT: "#2C2C2C",
+          foreground: "#E8E8E8",
+        },
+        border: "#3F3F46",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,5 +75,3 @@ const config = {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
-
-export default config

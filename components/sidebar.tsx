@@ -40,7 +40,7 @@ const labels = {
 const categoryOrder = ["pinned", "today", "yesterday", "7", "30", "older"];
 
 export default function Sidebar({
-  notes: publicNotes,
+  notes,
   onNoteSelect,
   isMobile,
 }: {
@@ -76,6 +76,18 @@ export default function Sidebar({
 
   const scrollViewportRef = useRef<HTMLDivElement>(null);
 
+  const {
+    notes: contextSessionNotes,
+    sessionId,
+    setSessionId,
+    refreshSessionNotes,
+  } = useContext(SessionNotesContext);
+
+  const allNotes = useMemo(
+    () => [...(notes || []), ...(contextSessionNotes || [])],
+    [notes, contextSessionNotes]
+  );
+
   useEffect(() => {
     if (selectedNoteSlug && scrollViewportRef.current) {
       const selectedElement = scrollViewportRef.current.querySelector(`[data-note-slug="${selectedNoteSlug}"]`);
@@ -97,18 +109,6 @@ export default function Sidebar({
     }
   }, [selectedNoteSlug, highlightedIndex]);
 
-  const {
-    notes: sessionNotes,
-    sessionId,
-    setSessionId,
-    refreshSessionNotes,
-  } = useContext(SessionNotesContext);
-
-  const notes = useMemo(
-    () => [...publicNotes, ...sessionNotes],
-    [publicNotes, sessionNotes]
-  );
-
   useEffect(() => {
     if (pathname) {
       const slug = pathname.split("/").pop();
@@ -118,12 +118,12 @@ export default function Sidebar({
 
   useEffect(() => {
     if (selectedNoteSlug) {
-      const note = notes.find((note) => note.slug === selectedNoteSlug);
+      const note = allNotes.find((note) => note.slug === selectedNoteSlug);
       setSelectedNote(note || null);
     } else {
       setSelectedNote(null);
     }
-  }, [selectedNoteSlug, notes]);
+  }, [selectedNoteSlug, allNotes]);
 
   useEffect(() => {
     const storedPinnedNotes = localStorage.getItem("pinnedNotes");
@@ -131,7 +131,7 @@ export default function Sidebar({
       setPinnedNotes(new Set(JSON.parse(storedPinnedNotes)));
     } else {
       const initialPinnedNotes = new Set(
-        notes
+        allNotes
           .filter(
             (note) =>
               note.slug === "about-me" ||
@@ -146,16 +146,16 @@ export default function Sidebar({
         JSON.stringify(Array.from(initialPinnedNotes))
       );
     }
-  }, [notes, sessionId]);
+  }, [allNotes, sessionId]);
 
   useEffect(() => {
-    const userSpecificNotes = notes.filter(
+    const userSpecificNotes = allNotes.filter(
       (note) => note.public || note.session_id === sessionId
     );
     const grouped = groupNotesByCategory(userSpecificNotes, pinnedNotes);
     sortGroupedNotes(grouped);
     setGroupedNotes(grouped);
-  }, [notes, sessionId, pinnedNotes]);
+  }, [allNotes, sessionId, pinnedNotes]);
 
   useEffect(() => {
     if (localSearchResults && localSearchResults.length > 0) {
@@ -446,7 +446,7 @@ export default function Sidebar({
         <div ref={scrollViewportRef} className="flex flex-col w-full">
           <SessionId setSessionId={setSessionId} />
           <CommandMenu
-            notes={notes}
+            notes={allNotes}
             sessionId={sessionId}
             addNewPinnedNote={handlePinToggle}
             navigateNotes={navigateNotes}
@@ -458,7 +458,7 @@ export default function Sidebar({
           />
           <div className={`${isMobile ? "w-full" : "w-[320px]"} px-2`}>
             <SearchBar
-              notes={notes}
+              notes={allNotes}
               onSearchResults={setLocalSearchResults}
               sessionId={sessionId}
               inputRef={searchInputRef}

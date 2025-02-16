@@ -94,13 +94,16 @@ export function NoteItem({
     }
   };
 
+  const linkColor = item.color || "#0000FF"; // Default to blue if no color is set
+  const titleColor = item.color ? "#FFFFFF" : "#000000"; // Ensure title is visible
+
   const NoteContent = (
     <li
       tabIndex={0}
       className={`h-[70px] w-full ${
         (!isMobile && isSearching && isHighlighted) ||
         (!isSearching && item.slug === selectedNoteSlug)
-          ? "bg-[#FFE390] dark:bg-[#9D7D28] dark:text-white rounded-md"
+          ? "dark:text-white rounded-md"
           : ""
       } ${
         !isMobile && showDivider &&
@@ -108,6 +111,7 @@ export function NoteItem({
           ? 'after:content-[""] after:block after:mx-2 after:border-t after:border-muted-foreground/20'
           : ""
       }`}
+      style={{ backgroundColor: item.color || "#E5E7EB" }}
     >
       <div 
         data-note-slug={item.slug}
@@ -118,15 +122,19 @@ export function NoteItem({
           prefetch={true}
           tabIndex={-1}
           className="block py-2 h-full w-full flex flex-col justify-center"
+          style={{ color: linkColor }}
         >
-          <h2 className="text-sm font-bold px-2 break-words line-clamp-1">
+          <h2
+            className="text-sm font-bold px-2 break-words line-clamp-1"
+            style={{ color: titleColor }}
+          >
             {item.emoji} {item.title}
           </h2>
           <p
             className={`text-xs pl-2 break-words line-clamp-1 ${
               (!isMobile && isSearching && isHighlighted) ||
               (!isSearching && item.slug === selectedNoteSlug)
-                ? "text-muted-foreground dark:text-white/80"
+                ? "text-muted-foreground dark:text-black"
                 : "text-muted-foreground"
             }`}
           >

@@ -1,14 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   async rewrites() {
     return [
       {
         source: '/messages',
-        destination: `${process.env.NEXT_PUBLIC_MESSAGES_URL}/messages`,
+        destination: '/messages',
       },
       {
         source: '/messages/:path*',
-        destination: `${process.env.NEXT_PUBLIC_MESSAGES_URL}/messages/:path*`,
+        destination: '/messages/:path*',
       },
     ];
   },

@@ -53,6 +53,10 @@
   text-decoration: underline;
 }
 
+.dark .markdown-body a {
+  color: #a9ffeb; /* Change to your desired color for dark mode */
+}
+
 .markdown-body ul {
   list-style-type: disc;
   padding-left: 2em;

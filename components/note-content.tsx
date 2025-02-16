@@ -71,13 +71,7 @@ export default function NoteContent({
     );
   }, [canEdit, handleMarkdownCheckboxChange]);
 
-  const renderLink = useCallback((props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-    return (
-      <a {...props} target="_blank" rel="noopener noreferrer">
-        {props.children}
-      </a>
-    );
-  }, []);
+  const linkColor = note.color || "#0000FF"; // Default to blue if no color is set
 
   return (
     <div className="px-2">
@@ -104,8 +98,10 @@ export default function NoteContent({
             className="markdown-body min-h-dvh"
             remarkPlugins={[remarkGfm]}
             components={{
+              a: ({ node, ...props }) => (
+                <a {...props} style={{ color: linkColor }} />
+              ),
               li: renderListItem,
-              a: renderLink,
             }}
           >
             {note.content || "Start writing..."}
