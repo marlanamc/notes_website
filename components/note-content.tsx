@@ -71,7 +71,7 @@ export default function NoteContent({
     );
   }, [canEdit, handleMarkdownCheckboxChange]);
 
-  const linkColor = note.color || "#0000FF"; // Default to blue if no color is set
+  const linkColor = "#FFB6C1";
 
   return (
     <div className="px-2">

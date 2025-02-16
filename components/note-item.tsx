@@ -94,7 +94,7 @@ export function NoteItem({
     }
   };
 
-  const linkColor = item.color || "#0000FF"; // Default to blue if no color is set
+  const linkColor = "#FFB6C1";
   const titleColor = item.color ? "#FFFFFF" : "#000000"; // Ensure title is visible
 
   const NoteContent = (
