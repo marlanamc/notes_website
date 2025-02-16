@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./styles/github-markdown.css";
+
+/* Enable SF Pro font smoothing */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 91%;
+    --card: 0 0% 17%;
+    --card-foreground: 0 0% 91%;
+    --popover: 0 0% 17%;
+    --popover-foreground: 0 0% 91%;
+    --primary: 220 25% 60%;
+    --primary-foreground: 217 100% 95%;
+    --secondary: 350 15% 66%;
+    --secondary-foreground: 0 100% 97%;
+    --muted: 0 2% 17%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 140 12% 56%;
+    --accent-foreground: 150 100% 93%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 26%;
+    --input: 240 5% 26%;
+    --ring: 240 5% 65%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --focus-ring: 2px solid #e2a727;
+  }
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background;
+    @apply text-white;
+  }
+
+  *:focus-visible {
+    outline: var(--focus-ring);
+    border-radius: 6px;
+  }
+}
+
+/* Global caret styling */
+* {
+  caret-color: #27e291;
+}
+
+.dark {
+  background-color: #1A1A1A;
+  color: #E8E8E8;
+}
+
+.dark .muted {
+  background-color: #2C2A2A;
+}
+
+.dark .primary {
+  background-color: #7B93B8;
+  color: #E8F0FF;
+}
+
+.dark .secondary {
+  background-color: #B89B96;
+  color: #FFF0ED;
+}
+
+.dark .accent {
+  background-color: #8BA893;
+  color: #E8F5EB;
+}
+
+.dark .card,
+.dark .popover {
+  background-color: #2C2C2C;
+  color: #E8E8E8;
+}
+
+.dark .border {
+  border-color: #3F3F46;
+}
